@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="main-content">
+
+        <!-- HEADER -->
+        <header>
+            <div>
+                <h1>Library Dashboard</h1>
+                <p>Welcome to your Library Management System!</p>
+            </div>
+
+            <div class="admin">
+                👤 Library Admin
+            </div>
+        </header>
+
+        <!-- DASHBOARD CARDS -->
+        <section class="dashboard-cards">
+
+            <div class="card total">
+                <div class="card-icon">📚</div>
+                <h3>Total Books</h3>
+                <h2 id="total-books">0</h2>
+                <p>Books in collection</p>
+            </div>
+
+            <div class="card available">
+                <div class="card-icon">📖</div>
+                <h3>Available Books</h3>
+                <h2 id="available-books">0</h2>
+                <p>Ready to borrow</p>
+            </div>
+
+            <div class="card borrowed">
+                <div class="card-icon">📕</div>
+                <h3>Borrowed Books</h3>
+                <h2 id="borrowed-books">0</h2>
+                <p>Currently borrowed</p>
+            </div>
+
+        </section>
+
+        <!-- BOOK MANAGEMENT -->
+        <section class="book-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>Book Management</h2>
+                    <p>Add, view, edit, and delete library books.</p>
+                </div>
+
+                <button class="add-button" id="add-button">
+                    + Add New Book
+                </button>
+            </div>
+
+            <!-- SEARCH AND FILTER -->
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="search-input"
+                    placeholder="🔍 Search book title or author..."
+                >
+
+                <select id="status-filter">
+                    <option value="">All Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Borrowed">Borrowed</option>
+                </select>
+
+            </div>
+
+            <!-- BOOK TABLE -->
+            <div class="table-container">
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Book Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="book-table-body">
+                    </tbody>
+
+                </table>
+            </div>
+
+            <p id="book-count">Showing 0 books</p>
+
+        </section>
+
+    </div>
+
+    <!-- ADD / EDIT BOOK MODAL -->
+    <div class="modal" id="book-modal">
+
+        <div class="form-container">
+
+            <h2 id="form-title">Add New Book</h2>
+
+            <form id="book-form">
+
+                <label>Book Title</label>
+                <input
+                    type="text"
+                    id="book-title"
+                    placeholder="Enter book title"
+                    required
+                >
+
+                <label>Author</label>
+                <input
+                    type="text"
+                    id="book-author"
+                    placeholder="Enter author name"
+                    required
+                >
+
+                <label>Category</label>
+                <input
+                    type="text"
+                    id="book-category"
+                    placeholder="Enter category"
+                    required
+                >
+
+                <label>Book Status</label>
+                <select id="book-status">
+                    <option value="Available">Available</option>
+                    <option value="Borrowed">Borrowed</option>
+                </select>
+
+                <div class="form-buttons">
+
+                    <button type="submit" id="save-button">
+                        Save Book
+                    </button>
+
+                    <button type="button" id="cancel-button">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
