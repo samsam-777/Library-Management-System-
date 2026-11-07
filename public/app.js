@@ -1,5 +1,3 @@
-
-// GET HTML ELEMENTS
 const addButton = document.getElementById("add-button");
 const bookModal = document.getElementById("book-modal");
 const bookForm = document.getElementById("book-form");
@@ -14,13 +12,11 @@ const tableBody = document.getElementById("book-table-body");
 const searchInput = document.getElementById("search-input");
 const statusFilter = document.getElementById("status-filter");
 
-// DASHBOARD ELEMENTS
 const totalBooks = document.getElementById("total-books");
 const availableBooks = document.getElementById("available-books");
 const borrowedBooks = document.getElementById("borrowed-books");
 const bookCount = document.getElementById("book-count");
 
-// BOOK DATA
 let books = JSON.parse(localStorage.getItem("libraryBooks")) || [
     {
         id: 1,
@@ -45,17 +41,13 @@ let books = JSON.parse(localStorage.getItem("libraryBooks")) || [
     }
 ];
 
-// EDITING BOOK ID
+
 let editingId = null;
 
-
-// SAVE DATA TO LOCAL STORAGE
 function saveBooks() {
     localStorage.setItem("libraryBooks", JSON.stringify(books));
 }
 
-
-// UPDATE DASHBOARD CARDS
 function updateDashboard() {
 
     totalBooks.textContent = books.length;
@@ -69,8 +61,6 @@ function updateDashboard() {
     ).length;
 }
 
-
-// DISPLAY BOOKS
 function displayBooks() {
 
     tableBody.innerHTML = "";
@@ -146,8 +136,6 @@ function displayBooks() {
     updateDashboard();
 }
 
-
-// PROTECT TABLE FROM HTML INPUT
 function escapeHTML(value) {
 
     return String(value).replace(/[&<>"']/g, character => ({
@@ -160,8 +148,6 @@ function escapeHTML(value) {
 
 }
 
-
-// OPEN ADD BOOK FORM
 addButton.addEventListener("click", function() {
 
     editingId = null;
@@ -179,7 +165,6 @@ addButton.addEventListener("click", function() {
 });
 
 
-// CLOSE FORM
 cancelButton.addEventListener("click", function() {
 
     bookModal.style.display = "none";
@@ -190,8 +175,6 @@ cancelButton.addEventListener("click", function() {
 
 });
 
-
-// ADD OR UPDATE BOOK
 bookForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
@@ -208,8 +191,7 @@ bookForm.addEventListener("submit", function(event) {
 
     if (editingId === null) {
 
-        // CREATE NEW BOOK
-
+        
         const newBook = {
             id: books.length > 0
                 ? Math.max(...books.map(book => book.id)) + 1
@@ -227,7 +209,6 @@ bookForm.addEventListener("submit", function(event) {
 
     } else {
 
-        // UPDATE EXISTING BOOK
 
         const book = books.find(
             book => book.id === editingId
@@ -258,13 +239,11 @@ bookForm.addEventListener("submit", function(event) {
 
 });
 
-
-// EDIT AND DELETE BUTTONS
 tableBody.addEventListener("click", function(event) {
 
     const id = Number(event.target.dataset.id);
 
-    // EDIT BOOK
+   
     if (event.target.classList.contains("edit-button")) {
 
         const book = books.find(
@@ -293,7 +272,6 @@ tableBody.addEventListener("click", function(event) {
     }
 
 
-    // DELETE BOOK
     if (event.target.classList.contains("delete-button")) {
 
         const confirmDelete = confirm(
@@ -318,24 +296,18 @@ tableBody.addEventListener("click", function(event) {
 
 });
 
-
-// SEARCH BOOK
 searchInput.addEventListener("input", function() {
 
     displayBooks();
 
 });
 
-
-// FILTER BOOK STATUS
 statusFilter.addEventListener("change", function() {
 
     displayBooks();
 
 });
 
-
-// CLOSE MODAL WHEN CLICKING OUTSIDE THE FORM
 bookModal.addEventListener("click", function(event) {
 
     if (event.target === bookModal) {
@@ -350,7 +322,5 @@ bookModal.addEventListener("click", function(event) {
 
 });
 
-
-// INITIAL DISPLAY
 saveBooks();
 displayBooks();
